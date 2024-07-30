@@ -45,7 +45,7 @@ while seguir == "si":
     genero_ingresado = input("Ingrese su genero (Masculino, Femenino o Otro):  ")
     while genero_ingresado != "Masculino" and genero_ingresado != "Femenino" and genero_ingresado != "Otro":
         genero_ingresado = input("Reingrese su genero:  ")
-    
+
     voto_ingresado = input("Ingrese su voto (STARBUCKS, MCDONALDS, ZARA, KFC):  ")
     while voto_ingresado != "STARBUCKS" and voto_ingresado != "MCDONALDS" and voto_ingresado != "ZARA" and voto_ingresado != "KFC":
         voto_ingresado = input("Reingrese su voto:  ")
@@ -71,7 +71,7 @@ while seguir == "si":
                     contador_zara_femenino += 1
                 case _ :
                     contador_zara_otro += 1
-                
+
         case "STARBUCKS":
             if edad_ingresada >= 30 and edad_ingresada <= 45:
                 desempleado_starbucks += 1
@@ -82,7 +82,7 @@ while seguir == "si":
                 nombre_otro_genero = nombre_ingresado
                 voto_otro_genero = voto_ingresado
                 edad_otro_genero = edad_ingresada
-
+    seguir = input("¿Desea seguir? si/no")
 
     # a-Nombre y situación laboral de la persona con mayor edad que voto por Zara.
     # b-Nombre y voto de la persona de sexo Otro de entre 60 y 70 años.
