@@ -18,6 +18,15 @@
 
 seguir = "si"
 contador = 0
+contador_rara = 0
+contador_super_rara = 0
+contador_ultra_rara = 0
+contador_magica = 0
+contador_monstruo = 0
+contador_trampa = 0
+acumulador_precio_magica = 0
+acumulador_precio_monstruo = 0
+acumulador_precio_trampa = 0
 cantidad_ultra_raras_50000_80000 = 0
 bandera_rara = 0
 precio_carta_menor_precio_rara = 0
@@ -41,9 +50,47 @@ while seguir == "si":
         case "Ultra Rara":
             if precio_carta_ingresada > 50000 and precio_carta_ingresada < 80000:
                 cantidad_ultra_raras_50000_80000 += 1
+            contador_ultra_rara += 1
+            
         case "Rara":
             if bandera_rara == 0:
                 nombre_carta_menor_precio_rara = nombre_carta_ingresada
                 tipo_carta_menor_precio_rara = tipo_carta_ingresada
                 precio_carta_menor_precio_rara = precio_carta_ingresada
-                # B) El nombre y tipo de la carta con menor precio de la rareza Rara.
+
+            elif precio_carta_menor_precio_rara > precio_carta_ingresada:
+                nombre_carta_menor_precio_rara = nombre_carta_ingresada
+                tipo_carta_menor_precio_rara = tipo_carta_ingresada
+                precio_carta_menor_precio_rara = precio_carta_ingresada
+            contador_rara += 1
+
+        case _ :
+            contador_super_rara += 1
+
+    match tipo_carta_ingresada:
+        case "Magica":
+            acumulador_precio_magica += precio_carta_ingresada
+            contador_magica += 1
+        
+        case "Monstruo":
+            acumulador_precio_monstruo += precio_carta_ingresada
+            contador_monstruo += 1
+        
+        case _ :
+            acumulador_precio_trampa += precio_carta_ingresada
+            contador_trampa += 1
+    contador += 1
+    seguir = input("¿Quiere seguir? si/no:  ")
+
+# A) Cantidad de cartas de rareza Ultra raras cuyo precio oscile en 50000 y 80000
+# B) El nombre y tipo de la carta con menor precio de la rareza Rara.
+# C) El porcentaje de rara, super rara y ultra rara hay sobre el total
+# [ej: 30% rara ,30% super rara, 40% ultra rara ( debe sumar 100)]
+# D) Determinar el precio promedio por cada tipo de carta
+# E) Determinar cual fue el tipo de carta mas vendida
+print(f"La cantidad de cartas de rareza Ultra rara cuyo precio oscila entre 50000 y 80000 es:  {cantidad_ultra_raras_50000_80000}")
+print(f"La carta con menor precio de rareza rara es:\nNombre: {nombre_carta_menor_precio_rara}\nTipo: {tipo_carta_menor_precio_rara}")
+porcentaje_rara = (contador_rara / contador) * 100
+porcentaje_super_rara = (contador_super_rara / contador) * 100
+porcentaje_ultra_rara = (contador_ultra_rara / contador) * 100
+print(f"El porcentaje de cartas es: Raras {porcentaje_rara:.2f}% Super Raras {porcentaje_super_rara:.2f}% y Ultra Raras {porcentaje_ultra_rara:.2f}%")
