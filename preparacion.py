@@ -60,10 +60,9 @@ while contador < 5:
         case _ :
             contador_masculinas += 1
 
-    match peso_ingresado:
-        case peso if peso > peso_mascota_pesada:
-            peso_mascota_pesada = peso
-            tipo_mascota_pesada = tipo_ingresado
+    if peso_ingresado > peso_mascota_pesada:
+        peso_mascota_pesada = peso_ingresado
+        tipo_mascota_pesada = tipo_ingresado
 
     acumulador_peso += peso_ingresado
     contador += 1
