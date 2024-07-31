@@ -88,9 +88,15 @@ while seguir == "si":
 # [ej: 30% rara ,30% super rara, 40% ultra rara ( debe sumar 100)]
 # D) Determinar el precio promedio por cada tipo de carta
 # E) Determinar cual fue el tipo de carta mas vendida
-print(f"La cantidad de cartas de rareza Ultra rara cuyo precio oscila entre 50000 y 80000 es:  {cantidad_ultra_raras_50000_80000}")
-print(f"La carta con menor precio de rareza rara es:\nNombre: {nombre_carta_menor_precio_rara}\nTipo: {tipo_carta_menor_precio_rara}")
 porcentaje_rara = (contador_rara / contador) * 100
 porcentaje_super_rara = (contador_super_rara / contador) * 100
 porcentaje_ultra_rara = (contador_ultra_rara / contador) * 100
+
+promedio_magica = acumulador_precio_magica / contador_magica
+promedio_monstruo = acumulador_precio_monstruo / contador_monstruo
+promedio_trampa = acumulador_precio_trampa / contador_trampa
+
+print(f"La cantidad de cartas de rareza Ultra rara cuyo precio oscila entre 50000 y 80000 es:  {cantidad_ultra_raras_50000_80000}")
+print(f"La carta con menor precio de rareza rara es:\nNombre: {nombre_carta_menor_precio_rara}\nTipo: {tipo_carta_menor_precio_rara}")
 print(f"El porcentaje de cartas es: Raras {porcentaje_rara:.2f}% Super Raras {porcentaje_super_rara:.2f}% y Ultra Raras {porcentaje_ultra_rara:.2f}%")
+print(f"El precio promedio de cada tipo de carta es: Magica {promedio_magica} Monstruo {promedio_monstruo} y Trampa {promedio_trampa}")
