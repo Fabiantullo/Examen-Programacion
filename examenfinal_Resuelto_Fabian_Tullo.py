@@ -23,7 +23,7 @@
 # 5. Determinar cuál fue la franquicia más votada
 
 seguir = "si"
-encuestados_masculinos = 0
+encuestados_masculinos = "¡No hay!"
 edad_menor_edad_apple = 0
 voto_ikea_femenino_mayor_25 = 0
 votos_apple = 0
@@ -34,14 +34,18 @@ contador_empleados = 0
 acumulador_edad_no_empleados = 0
 contador_no_empleados = 0
 contador = 0
+edad_promedio_empleados = "¡No hay empleados!"
+edad_promedio_no_empleados = "¡No hay no-empleados!"
 
 while seguir == "si":
     nombre_ingresado = input("Ingrese su nombre:  ")
-
-    edad_ingresada = int(input("Ingrese su edad (No menor a 18):  "))
-    while edad_ingresada < 18:
-        edad_ingresada = int(input("REIngrese su edad (No menor a 18):  "))
-    
+    try:
+        edad_ingresada = int(input("Ingrese su edad (No menor a 18):  "))
+        while edad_ingresada < 18:
+            edad_ingresada = int(input("REIngrese su edad (No menor a 18):  "))
+    except ValueError:
+        print("Solo se permiten numeros")
+        continue 
     empleado_ingreso = input("Ingrese si esta empleado (si/no):  ")
     while empleado_ingreso != "si" and empleado_ingreso != "no":
         empleado_ingreso = input("REIngrese si esta empleado (si/no):  ")
@@ -110,8 +114,15 @@ while seguir == "si":
     seguir = input("¿Quiere seguir? (si/no):  ")
 
 porcentaje_femenino_ikea = (voto_ikea_femenino_mayor_25 / contador) * 100
-edad_promedio_empleados = acumulador_edad_empleados / contador_empleados
-edad_promedio_no_empleados = acumulador_edad_no_empleados / contador_no_empleados
+try:
+    edad_promedio_empleados = acumulador_edad_empleados / contador_empleados
+except ZeroDivisionError:
+    print("No se encontro empleados registrados.")
+    
+try:
+    edad_promedio_no_empleados = acumulador_edad_no_empleados / contador_no_empleados
+except ZeroDivisionError:
+    print("No se encontro no-empleados registrados.")
 
 print(f"La cantidad de encuestados Masculinos, cuya edad esta entre 18 y 25 o entre 36 y 49 o que votaron por IKEA fue de: {encuestados_masculinos}.")
 print(f"El encuestado con menor edad que voto por APPLE fue: {nombre_menor_edad_apple} y su genero es {genero_menor_edad_apple}.")
