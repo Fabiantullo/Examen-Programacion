@@ -1,127 +1,121 @@
-# Usuarios vendedores de MercadoLibre
-# Cargar 10 usuarios/vendedores de MercadoLibre con sus respectivas
-# publicaciones.
-# ● Los datos que se cargarán son:
-# ● Nombre de usuario
-# ● Edad (validar)
-# ● Cantidad de productos (validar-número entero positivo).
-# ● Número de publicaciones (validar-número entero positivo, hasta 1000).
-# ● Tipo ("producto", "servicio", "subasta")
-# ● Cuenta activa ("si", "no")
+#Facundo Tomás Hernández 
+#Comision 105
+#Profesor Giovanni Luchetta
 
-# Tema B:
+#Dr. Gregory Cat (Diagnostico Veterinario)
 
-# 1. Cantidad de usuarios con la cuenta inactiva cuyo producto sea del tipo
-# “servicio”, cuya edad no supere los 55 años.
+#Para el hospital Universitario Princeton-Plainsboro de Nueva Jersey.
 
-# 2. Nombre y tipo de publicacion de mayor edad con menos de 500
-# publicaciones.
+#Es necesario registrar el ingreso de las mascotas en la próxima hora (solo se pueden atender 15 mascotas), para esto hay que considerar  los  siguientes  datos  y encasillarlos  en  ciertos  diagnósticos  para  poder  derivarlos  adecuadamente:
 
-# 3. Porcentaje de cuentas activas.
+#●	Edad (Validar entre 1 y 20 años)
+#●	Tipo: (Validar “gato”, “perro”, “hámster”)
+#●	Peso: (Más de 0 kg)
+#●	Diagnóstico: (Validar “problemas digestivos”, “parásitos”, “infección”)
+#●	Vacuna antirrábica (validar “si”, ”no”)
 
-# 4. Mostrar el promedio de edad de los usuarios cuyas publicaciones fueron 
-# del tipo “servicio”.
+#Tema A
 
-# 5. Determinar el tipo con menos publicaciones, cuya cuenta se encuentre
-# “activa”.
-contador_cuentas = 0
-cont_ingresos = 0
-contador_activas = 0
-contador_productos_activo = 0
-contador_subasta_activo = 0
-contador_servicio_activo = 0
-contador_servicio = 0
-acumulador_edad = 0
-contador_usuarios_servicio_menos_55 = 0
-bandera_mayor_edad = 0
-mayor_edad = 0
+#1.	Cantidad de mascotas con vacuna antirrábica, cuya edad está entre los 5 y 10 años, que se presentaron por problemas digestivos o parásitos.
+#2.	El tipo de mascota más ingresada con problemas digestivos.
+#3.	Edad y tipo de la mascota más vieja sin vacuna antirrábica.
+#4.	Porcentaje de mascotas vacunadas y no vacunadas.
+#5.	Promedio de edad de los perros.
 
-while cont_ingresos < 10:
-    nombre = input("ingrese su nombre: ")
-    edad = int(input("ingrese su edad: "))
-    while edad < 18:
-        edad = int(input("REingrese su edad: "))
-    cant_productos = int(input("ingrese la cantidad de productos: "))
-    while cant_productos < 0:
-        cant_productos = int(input("REingrese la cantidad de productos: "))
-    num_publicaciones = int(input("ingrese un numero de publicaciones (no mayor a 1000): "))
-    while num_publicaciones < 0 or num_publicaciones > 1000:
-        num_publicaciones = int(input("ingrese un numero de publicaciones (no mayor a 1000): "))
-    tipo = input("ingresa el tipo: ")
-    while tipo != "producto" and tipo != "servicio" and tipo != "subasta":
-        tipo = input("ingresa el tipo: ")
-    cuenta_activa = input("ingrese cuanta activa (si/no): ")
-    while cuenta_activa != "si" and cuenta_activa != "no":
-        cuenta_activa = input("REIngrese cuanta activa (si/no): ")
+contador_mascota = 0
 
-# 1. Cantidad de usuarios con la cuenta inactiva cuyo producto sea del tipo
-# “servicio”, cuya edad no supere los 55 años.
+edad_mascota = 0
 
-    contador_cuentas +=1
+cantidad_vacuna_digestivo_parasitos = 0
 
-    if cuenta_activa:
-        contador_activas +=1
-    if tipo == "producto":
-        contador_productos_activo =+1
-    elif tipo =="subasta":
-        contador_subasta_activo +=1
-    else:
-        contador_servicio_activo +=1
-    if tipo == "servicio":
-        contador_servicio +=1
-        acumulador_edad += edad
-    elif edad < 55:
-        contador_usuarios_servicio_menos_55 =+1
+gato_problemas_digestivos = 0
+perro_problemas_digestivos = 0
+hamster_problemas_digestivos = 0
 
-    
+edad_mascota_sin_vacuna = 0
+tipo_mascota_sin_vacuna = ""
+bandera_mascota_sin_vacuna = 0
 
-# 2. Nombre y tipo de publicacion de mayor edad con menos de 500
-# publicaciones.
-    if num_publicaciones < 500:
-        if bandera_mayor_edad == 0:
-            mayor_edad = edad
-            nombre_edad_mayor = nombre
-            tipo_mayor_edad = tipo
-            bandera_mayor_edad = 1
-        elif edad > mayor_edad:
-            mayor_edad = edad
-            nombre_edad_mayor = nombre
-            tipo_mayor_edad = tipo
+mascotas_vacunadas =0
+mascotas_no_vacunadas = 0
+total_vacunas = 0
 
-# 3. Porcentaje de cuentas activas.
+suma_edades_perro = 0
+contador_edades_perro = 0
 
-porcentaje_activas = (contador_activas / contador_cuentas) * 100
-if contador_servicio > 0:
-    promedio_edad = acumulador_edad / contador_servicio
 
-# 4. Mostrar el promedio de edad de los usuarios cuyas publicaciones fueron 
-# del tipo “servicio”.
+while contador_mascota < 15:
+    edad = int(input ("Ingrese la edad de la mascota: "))
+    while edad < 1 or edad > 20:
+        edad = int(input ("REIngrese la edad de la mascota (entre 1 y 20 años): "))
+        
+    tipo = input ("Ingrese el tipo de mascota: ")
+    while tipo != "gato" and tipo != "perro" and tipo != "hámster":
+        tipo = input ("REIngrese el tipo de mascota (gato,perro,hámster): ")
+        
+    peso = float (input("Ingrese el peso de la mascota solamente con números: "))
+    while peso < 0:
+        peso = float (input("REIngrese el peso de la mascota (superior a 0): "))
 
-# 5. Determinar el tipo con menos publicaciones, cuya cuenta se encuentre
-# “activa”.
+    diagnostico = input ("Ingrese el diagnóstico de la mascota: ")
+    while diagnostico != "problemas digestivos" and diagnostico != "parásitos" and diagnostico != "infección":
+        diagnostico = input ("REIngrese el diagnóstico (problemas digestivos, parásitos, infección): ")
+        
+    vacuna = input ("¿Tiene puesta la vacuna antirrábica? (si/no): ")
+    while vacuna != "si" and vacuna != "no":
+        vacuna = input ("Contestas solamente por si o por no: ")
+        
+    match vacuna:
+        case "si":
+            total_vacunas += 1
+            mascotas_vacunadas += 1
+            if edad > 5 and edad < 10:
+                if diagnostico == "problemas digestivos" or diagnostico == "parásitos":
+                    cantidad_vacuna_digestivo_parasitos += 1
+        case "no":
+            total_vacunas += 1
+            mascotas_no_vacunadas += 1
+            if bandera_mascota_sin_vacuna == 0:
+                edad_mascota_sin_vacuna = edad
+                tipo_mascota_sin_vacuna = tipo
+                bandera_mascota_sin_vacuna = 1
+            elif edad > edad_mascota_sin_vacuna:
+                edad_mascota_sin_vacuna = edad
+                tipo_mascota_sin_vacuna = tipo
 
-if contador_productos_activo < contador_subasta_activo and contador_subasta_activo < contador_servicio_activo:
-    menos_publicaciones = "subasta"
-elif contador_servicio_activo < contador_subasta_activo and contador_subasta_activo < contador_productos_activo:
-    menos_publicaciones = "servicio"
+    match tipo:
+        case "gato":
+            if diagnostico == "problemas digestivos":
+                gato_problemas_digestivos += 1
+        case "perro":
+            suma_edades_perro += edad
+            contador_edades_perro += 1
+            if diagnostico == "problemas digestivos":
+                perro_problemas_digestivos += 1
+        case _:
+                hamster_problemas_digestivos += 1
+    contador_mascota += 1
+
+porcentaje_vacunados = (mascotas_vacunadas/total_vacunas)*100
+porcentaje_no_vacunados = (mascotas_no_vacunadas/total_vacunas)*100
+
+if contador_edades_perro > 0:
+    promedio_edad_perro = suma_edades_perro/contador_edades_perro
 else:
-    menos_publicaciones = "producto"
+    promedio_edad_perro = 0
 
-if contador_usuarios_servicio_menos_55 >0:
-    print(f"1. Cantidad de usuarios con la cuenta inactiva cuyo producto sea del tipo “servicio”, cuya edad no supere los 55 años. {contador_usuarios_servicio_menos_55}")
+mas_problemas_digestivos = ""
+if gato_problemas_digestivos > perro_problemas_digestivos and gato_problemas_digestivos > hamster_problemas_digestivos:
+    mas_problemas_digestivos = "gato"
+elif perro_problemas_digestivos > hamster_problemas_digestivos and perro_problemas_digestivos > gato_problemas_digestivos:
+    mas_problemas_digestivos = "perro"
+elif hamster_problemas_digestivos > gato_problemas_digestivos and hamster_problemas_digestivos > perro_problemas_digestivos:
+    mas_problemas_digestivos = "hámster"
 else:
-    print("NO se ingreso.")
+    mas_problemas_digestivos = "No hay una mascota con más problemas digestivos."
 
-if bandera_mayor_edad > 0:
-    print(f"# 2. Nombre y tipo de publicacion de mayor edad con menos de 500 publicaciones.{nombre_edad_mayor} y {tipo_mayor_edad}")
-else:
-    print("no se ingreso lo pedido. ")
-
-print(f"Porcentaje de cuentas activas: {porcentaje_activas} '%'")
-if contador_servicio > 0:
-    print(f"Promedio Edad de usuarios en pub. de tipo 'servicio': {promedio_edad}")
-else: 
-    print("No hay publicaciones de tipo 'servicio'") 
-
-
-
+print(f"La cantidad de mascotas con vacuna antirrábica, cuya edad está entre los 5 y 10 años, que se presentaron por problemas digestivos o parásitos es de {cantidad_vacuna_digestivo_parasitos}")
+print(f"El tipo de mascota más ingresada con problemas digestivos es {mas_problemas_digestivos}")
+print(f"La edad de la mascota más vieja sin vacuna es {edad_mascota_sin_vacuna} y el es un {tipo_mascota_sin_vacuna}")
+print(f"El porcentaje de vacunados es {porcentaje_vacunados:.2f}% y el de no vacunados es del {porcentaje_no_vacunados:.2f}%")
+print(f"El promedio de edad de los perros es de {promedio_edad_perro}")
